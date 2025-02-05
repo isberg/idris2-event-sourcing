@@ -1,0 +1,10 @@
+[custom.all.idris2-event-sourcing]
+type = "local"
+path = "."
+ipkg = "idris2-event-sourcing.ipkg"
+test = "test/test.ipkg"
+
+[custom.all.idris2-event-sourcing-test]
+type = "local"
+path = "test"
+ipkg = "test.ipkg"
