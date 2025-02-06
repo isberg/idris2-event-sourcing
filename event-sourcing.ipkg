@@ -16,7 +16,7 @@ authors = "Jonas Isberg"
 -- depends =
 
 -- modules to install
-modules = Idris2_event_sourcing
+-- modules = 
 
 -- main file (i.e. file to load at REPL)
 -- main =
