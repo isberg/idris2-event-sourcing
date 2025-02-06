@@ -8,6 +8,17 @@ interface Decider command event state where
   evolve : event -> state -> state
   initialState : state
 
+{- Passing of implicit parameters in generic code
+   The utility functions below are written to work with all implementations
+   of the Decider interface. In order to not confuse the compiler, sometimes
+   an implicit (type) parameter is needed to be passed explicitly, so that
+   the correct interface implementation can be choosen and the right functions.
+
+   Passing implicit parameters are done like `f {param=value}`. When having 
+   multiple function applications in the same expression, paranteses can be needed
+   to pair the parameter with the right function call.
+-}
+
 public export
 evolve' : Decider command event state => state -> List event -> state
 evolve' s [] = s
