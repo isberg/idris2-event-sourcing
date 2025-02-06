@@ -105,3 +105,6 @@ To integrate this library into your project:
 
 With these steps, you're ready to build robust, auditable, and testable event-sourced applications in Idris2!
 
+## References for Further Reading
+
+- [Idris Tutorial – Implicit Arguments](https://idris2.readthedocs.io/en/latest/tutorial/typesfuns.html#implicit-arguments)
