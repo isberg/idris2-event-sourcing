@@ -91,6 +91,39 @@ update' c es = update c $ hydrate es {command=command}
   - `update` combines decision-making and state evolution by first calling `decide` and then applying `evolve'` to produce the new state along with the list of generated events.
   - `decide'` and `update'` are helper functions that work directly with an event history, making it easier to write executable specifications.
 
+### Idris Primer on Implicit Arguments
+  
+In Idris, implicit arguments are those that the compiler can often infer from context, so you do not have to specify them explicitly in every function call. They are denoted using curly braces. For example, if you have a function:
+
+```idris
+f : {n : Nat} -> Vect n a -> Nat
+```
+
+the parameter `n` is implicit. When you call `f`, Idris infers `n` from the length of the vector you provide. This mechanism reduces boilerplate and makes functions easier to use when the context uniquely determines the missing arguments. In this case, it can even be simplified to:
+
+
+```idris
+f : Vect n a -> Nat
+```
+
+`n` is an implicit parameter also in this case.
+
+The [Idris documentation on implicit arguments](https://idris2.readthedocs.io/en/latest/tutorial/typesfuns.html#implicit-arguments) explains that these parameters are automatically filled in by the type checker based on unification and contextual clues.
+
+### Why Explicit Passing May Be Required
+
+Sometimes, however, the compiler cannot automatically resolve the implicit arguments, or the context isn’t strong enough to determine the correct instance of a type class or interface. This is especially true in more abstract settings. 
+
+The utility functions above are written to work with all implementations
+of the Decider interface. In order to not confuse the compiler, sometimes
+an implicit (type) parameter is needed to be passed explicitly, so that
+the correct interface implementation can be choosen and the right functions.
+
+Passing implicit parameters are done like `f {param=value}`. When having 
+multiple function applications in the same expression, paranteses can be needed
+to pair the parameter with the right function call.
+
+
 ## Conclusion
 
 The **State Change Pattern** is central to Event Modeling because it provides a clear, testable method for managing state changes in an event-sourced system. By separating the concerns of *decision-making* (via `decide`) and *state evolution* (via `evolve`), you ensure that business logic is both explicit and verifiable. The accompanying Idris2 code offers a concrete implementation of these concepts, allowing developers to build systems that are robust, auditable, and amenable to formal reasoning through the Curry–Howard correspondence.
