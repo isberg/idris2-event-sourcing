@@ -30,16 +30,16 @@ import EventSourcing.StateChangePattern
 %default total
 
 -- Define operations for the counter.
-data Operation = Increment | Decrement
+data Command = Increment | Decrement
 
 -- Define changes that occur in the counter.
-data Change = Incremented | Decremented
+data Event = Incremented | Decremented
 
 -- The state of the counter is represented as a natural number.
 State : Type
 State = Nat
 
-implementation Decider Operation Change State where
+implementation Decider Command Event State where
   -- The counter starts at zero.
   initialState = Z
 
