@@ -2,4 +2,5 @@ package event-sourcing
 version = 0.1.0
 authors = "Jonas Isberg"
 modules = EventSourcing.StateChangePattern
+        , EventSourcing.StateViewPattern
 sourcedir = "src"
